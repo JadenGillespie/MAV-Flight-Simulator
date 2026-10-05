@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 from math import cos, sin, radians
-import matplotlib.image as img
+
 
 
 def main () :
@@ -15,11 +15,11 @@ def main () :
             break
         
         elif float(prompt) >= -360.0 and float(prompt) <= 360.0 : 
-            rotation(points,float(prompt)) 
-            graphic_xz_update (lines, fig, points) 
+            points_rotate = rotation(points,float(prompt)) 
+            graphic_xz_update (lines, fig, points_rotate) 
 
-            
-    print (0)
+    return 0
+
 
 
 def points_innit() :
@@ -35,6 +35,7 @@ def points_innit() :
     p8 = [-2,0,-0.5]
     
     return ([p0,p1,p2,p3,p4,p5,p6,p7,p8])
+
 
 
 def graphic_innit (points) : 
@@ -80,15 +81,18 @@ def graphic_innit (points) :
 def rotation (points,phi) : 
 
     phi = radians(phi) 
+    points_rotate = []
+    
     for pi in points : 
-
-        px = pi[0]
-        py = pi[1]
-        pz = pi[2]
         
-        pi[0] = px*cos(phi)-pz*sin(phi)
-        pi[1] = py
-        pi[2] = pz*cos(phi)+px*sin(phi)
+        px = pi[0]*cos(phi)-pi[2]*sin(phi)
+        py = pi[1]
+        pz = pi[2]*cos(phi)+pi[0]*sin(phi)
+
+        points_rotate.append([px,py,pz]) 
+
+    return points_rotate
+
         
 
 
@@ -109,7 +113,6 @@ def graphic_xz_update (lines, fig, points) :
     fig.canvas.draw_idle() 
 
     
-
 
 if __name__ == "__main__" :
     main()
