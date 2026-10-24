@@ -4,6 +4,7 @@ CC = gcc # NEVER CHANGE THIS
 CFLAGS = -Wextra -Wall -pedantic -std=c17
 CPPFLAGS = -I$(SRC_DIR)
 LDFLAGS = 
+OPENGL_LDFLAGS = -lGL -lGLU -lglut
 
 BUILD_DIR = build
 
@@ -29,7 +30,7 @@ debug: $(CFLAGS) += -O0 -g
 debug: $(TARGET)
 
 $(TARGET): $(STATIC_LIB) $(MAIN_O) | $(BUILD_DIR)
-	$(CC) $(LDFLAGS) $^ -o $@
+	$(CC) $(LDFLAGS) $(OPENGL_LDFLAGS) $^ -o $@
 
 $(STATIC_LIB): $(LIB_OBJECTS) | $(BUILD_DIR)
 	ar rcs $^ $@
@@ -38,7 +39,7 @@ $(LIB_OBJECTS): | $(BUILD_DIR)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $(LIB_SOURCES_C) -o $@
 
 $(MAIN_O): | $(BUILD_DIR)
-	$(CC) $(CFLAGS) $(CPP_FLAGS) -c $(MAIN_C) -o $@
+	$(CC) $(CFLAGS) $(CPP_FLAGS) $(OPENGL_LDFLAGS) -c $(MAIN_C) -o $@
 
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
