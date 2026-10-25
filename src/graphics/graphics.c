@@ -1,6 +1,12 @@
 #include <GL/freeglut.h>
+#include <stdint.h>
 
 #include "graphics.h"
+#include "graphics_shape.h"
+
+static graphics_shape_t rendered_objects[MAX_OBJECT_COUNT];
+
+static graphics_shape_t *shapes;
 
 static void graphical_event_loop();
 
