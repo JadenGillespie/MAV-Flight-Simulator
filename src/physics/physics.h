@@ -6,7 +6,7 @@
 
 
 //Not passing previous accel state, a0//
-void Gravity (const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc) ;
+static void Gravity (const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc) ;
 
 
 
@@ -25,7 +25,7 @@ void Update_Forces (vec2_t *position, vec2_t *velocity, vec2_t *acceleration, co
 
 
 
-void Gravity (const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc) { 
+static void Gravity (const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc) { 
    
     static const double g = 9.81 ; 
 
