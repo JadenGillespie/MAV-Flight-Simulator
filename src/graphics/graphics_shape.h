@@ -26,4 +26,6 @@ typedef struct graphics_shape
 
 graphics_shape_t *graphics_shape_create(graphics_shape_type shape, vec2_t pos, vec2_t vel, vec2_t accel);
 
+void graphics_shape_destroy(graphics_shape_t *shape);
+
 #endif

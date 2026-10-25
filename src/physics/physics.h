@@ -2,7 +2,6 @@
 #define PHYSICS_H_
 
 #include "graphics.h" 
-
 #define GRAVITY 1
 
 
