@@ -22,6 +22,8 @@ C_SOURCES := $(shell find "$(SRC_DIR)" -type "f" -name "*.c")
 LIB_SOURCES_C := $(filter-out $(MAIN_C),$(C_SOURCES))
 LIB_SOURCES_C_BASENAME := $(shell basename -a $(LIB_SOURCES_C))
 LIB_OBJECTS := $(patsubst %.c,$(BUILD_DIR)/%.o,$(LIB_SOURCES_C_BASENAME))
+LIB_OBJS_NO_SUFFIX := $(patsubst %.o,%,$(LIB_OBJECTS))
+LIB_SRCS_NO_SUFFIX := $(patsubst %.c,%,$(LIB_SOURCES_C))
 $(info $(LIB_SOURCES_C))
 $(info $(LIB_SOURCES_C_BASENAME))
 $(info $(LIB_OBJECTS))
@@ -33,14 +35,17 @@ prod: $(TARGET)
 debug: $(CFLAGS) += -O0 -g
 debug: $(TARGET)
 
-$(TARGET): $(STATIC_LIB) $(MAIN_O) | $(BUILD_DIR)
-	$(CC) $(CPPFLAGS) $(CFLAGS) $^ -o $@ $(LDFLAGS) $(OPENGL_LDFLAGS)
+$(TARGET): $(MAIN_O) $(STATIC_LIB)  | $(BUILD_DIR)
+	$(CC) $(CPPFLAGS) $(CFLAGS) $^ -o $@  $(OPENGL_LDFLAGS)
 
 $(STATIC_LIB): $(LIB_OBJECTS) | $(BUILD_DIR)
 	ar rcs $@ $^
 
-$(LIB_OBJECTS): $(LIB_SOURCES_C)| $(BUILD_DIR)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $(LIB_SOURCES_C) -o $@
+$(BUILD_DIR)/%.o: $(SRC_DIR)/graphics/%.c | $(BUILD_DIR)
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/%.o: $(SRC_DIR)/physics/%.c | $(BUILD_DIR)
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 $(MAIN_O): | $(BUILD_DIR)
 	$(CC) $(CFLAGS) $(CPPFLAGS) $(OPENGL_LDFLAGS) -c $(MAIN_C) -o $@
