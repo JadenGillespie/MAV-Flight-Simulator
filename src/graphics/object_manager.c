@@ -45,9 +45,33 @@ bool object_manager_add_object(graphics_shape_type shape, vec2_t pos, vec2_t vel
     return manager_push_back(manager, new_link);
 }
 
-void object_manager_remove_object()
+void object_manager_remove_object(object_link_t *obj, object_manager_t *manager)
 {
-    return;
+    if (!obj || !manager)
+    {
+        return;
+    }
+
+    object_link_t *prev_obj = NULL;
+
+    for (object_link_t *cur_obj = manager->head; cur_obj != NULL; cur_obj = cur_obj->next)
+    {
+        if (cur_obj == obj && !prev_obj) // cur_obj == manager->head
+        {
+            manager->head = cur_obj->next;
+            obj->next = NULL;
+            manager->len--;
+            return;
+        }
+
+        if (cur_obj->next == obj)
+        {
+            cur_obj->next = obj->next;
+            obj->next = NULL;
+            manager->len--;
+            return;
+        }
+    }
 }
 
 
