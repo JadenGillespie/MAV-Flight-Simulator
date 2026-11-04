@@ -18,7 +18,7 @@ typedef struct object_manager {
 
 object_manager_t *object_manager_init();
 
-bool object_manager_add_object(graphics_shape_type shape, vec2_t pos, vec2_t vel, vec2_t accel, object_manager_t *manager);
+bool object_manager_add_object(graphics_shape_t *shape, vec2_t pos, vec2_t vel, vec2_t accel, object_manager_t *manager);
 
 void object_manager_remove_object(object_link_t *obj, object_manager_t *manager);
 

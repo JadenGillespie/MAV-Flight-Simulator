@@ -6,7 +6,7 @@ PHYSICS_SRC_DIR = $(SRC_DIR)/physics
 CC = gcc # NEVER CHANGE THIS
 CFLAGS = -Wextra -Wall -pedantic -std=c17
 CPPFLAGS = -I$(SRC_DIR) -I$(GRAPHICS_SRC_DIR) -I$(PHYSICS_SRC_DIR)
-LDFLAGS = $(STATIC_LIB)
+LDFLAGS = $(STATIC_LIB) -lm
 OPENGL_LDFLAGS = -lglut -lGLU -lGL 
 
 BUILD_DIR = build

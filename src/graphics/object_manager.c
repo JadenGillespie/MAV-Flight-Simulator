@@ -23,24 +23,17 @@ object_manager_t *object_manager_init()
     return manager;
 }
 
-bool object_manager_add_object(graphics_shape_type shape, vec2_t pos, vec2_t vel, vec2_t accel, object_manager_t *manager)
+bool object_manager_add_object(graphics_shape_t *shape, vec2_t pos, vec2_t vel, vec2_t accel, object_manager_t *manager)
 {
-    graphics_shape_t *new_shape = graphics_shape_create(shape, pos, vel, accel);
-
-    if (!new_shape)
-    {
-        return false;
-    }
 
     object_link_t *new_link = object_link_create();
 
     if (!new_link)
     {
-        graphics_shape_destroy(new_shape);
         return false;
     }
 
-    new_link->object = new_shape;
+    new_link->object = shape;
 
     return manager_push_back(manager, new_link);
 }
