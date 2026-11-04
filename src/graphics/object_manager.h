@@ -16,7 +16,7 @@ typedef struct object_manager {
 } object_manager_t;
 
 
-bool object_manager_add_object(graphics_shape_type shape, vec2_t pos, vec2_t vel, vec2_t accel, object_manager_t *manager);
+object_manager_t *object_manager_init();
 
 bool object_manager_add_object(graphics_shape_type shape, vec2_t pos, vec2_t vel, vec2_t accel, object_manager_t *manager);
 
