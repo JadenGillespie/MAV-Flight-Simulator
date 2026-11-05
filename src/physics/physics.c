@@ -1,10 +1,6 @@
 #include "physics.h"
 
 
-static void gravity(const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc);
-
-//Gravity and Drag are coupled and must be considered simaltenously. Only y dir considered
-static void stokes(const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc); 
 
 void update_forces(vec2_t *position, vec2_t *velocity, vec2_t *acceleration, const double time_inc) { 
 
@@ -37,14 +33,8 @@ static void gravity(const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t
 
 static void stokes(const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc) { 
 
-    static const double e = 2.71828;
-    static const double g = 9.81; 
-    static const double pi = 3.14159;
-    static const double visc = 1.48e-4; 
-    static const double dia = 2.0; 
-    static const double mass = 10.0;
 
-    static const double k = 3.0*pi*visc*dia/(g*mass); 
+    static const double k = 3.0*pi*dynam_visc*dia/(g*mass); 
     const double D = 2.0*pow(k,1.0/2.0)*g; 
 
     double v0_mag = pow((pow(v0->x,2) + pow(v0->y,2)),1.0/2.0); 
@@ -54,5 +44,11 @@ static void stokes(const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t 
     velocity->y = pow(k,1.0/2.0)*(pow(e,(D*time_inc))/E -1)/(1 + pow(e,(D*time_inc))/E); 
     acceleration->y = g * (1 - pow(velocity->y,2) * k); 
     position->y = p0->y + pow(k, 1.0/2.0) * (log(pow(E + pow(e, D * time_inc), 2) / pow(E + 1, 2)) * (1.0 / D) - time_inc);
+
+}
+
+
+
+static void ode (const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc) {
 
 }
