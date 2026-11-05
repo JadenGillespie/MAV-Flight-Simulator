@@ -1,7 +1,13 @@
 #include <stdlib.h>
 #include <stddef.h>
+#include <GL/glut.h>
+#include <math.h>
 
 #include "graphics_shape.h"
+
+#ifndef M_PI
+#define M_PI 3.141592653
+#endif
 
 static void render_circle(const graphics_shape_t *shape);
 
@@ -45,6 +51,27 @@ void graphics_shape_destroy(graphics_shape_t *shape)
 
 static void render_circle(const graphics_shape_t *shape)
 {
-    // empty signature for now
+    if (!shape)
+    {
+        return;
+    }
+
+    glBegin(GL_TRIANGLE_FAN);
+    glVertex2f(shape->position.x, shape->position.y);
+
+    uint16_t segments_to_render = (shape->shape_info.num_segments < 3) ? 3 : shape->shape_info.num_segments;
+
+    for (int i = 0; i < shape->shape_info.num_segments; i++)
+    {
+        float angle = 2.0F * M_PI * (float)i / (float)(shape->shape_info.num_segments);
+
+        float vx = shape->position.x + (shape->shape_info.radius * cosf(angle));
+        float vy = shape->position.y + (shape->shape_info.radius * sinf(angle));
+
+        glVertex2f(vx, vy);
+    }
+    
+    glEnd();
+
     return;
 }
