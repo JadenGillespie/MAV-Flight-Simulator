@@ -2,6 +2,7 @@
 #define GRAPHICS_SHAPE_H_
 
 #include <stdbool.h>
+#include <stdint.h>
 
 typedef enum 
 {
@@ -22,6 +23,7 @@ typedef struct graphics_shape_info
     {
         struct {
             double radius;
+            uint16_t num_segments;
         };
     };
 
