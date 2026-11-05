@@ -26,7 +26,6 @@ void update_forces(vec2_t *position, vec2_t *velocity, vec2_t *acceleration, con
 static void gravity(const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc) { 
    
     static const double g = 9.81; //defined temporarily to test functionality
-                                  // fix syntax errors here
 
     acceleration -> y = g; 
     velocity -> y = g*time_inc + v0 -> y; 
@@ -39,7 +38,7 @@ static void gravity(const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t
 static void stokes(const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc) { 
 
     //defined temporarily to test functionality, metric SI units
-    // MAKE THESE STATIC CONST VALUES MACROS (#define)
+    // MAKE THESE STATIC CONST VALUES MACROS (#define) //NO, these are temporary 
     // a bunch of syntax errors in here when trying to compile
     static const double e = 2.71828;
     static const double g = 9.81; 
@@ -48,7 +47,7 @@ static void stokes(const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t 
     static const double dia = 2.0; 
     static const double mass = 10.0;
 
-    // dogshit variable names, terrible spacing, unreadable
+    // dogshit variable names, terrible spacing, unreadable; // again, temporary variables
     static const double k = 3.0*pi*visc*dia/(g*mass); 
     static const double D = 2.0*pow(k,1.0/2.0)*g; 
 
