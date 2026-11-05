@@ -1,28 +1,31 @@
 #include "physics.h"
-#include "graphics_shape.h"
 
 #define ARR_LEN 100 
 
-static const double refresh_rate = 60.0 ; 
+static double time_inc = 1.0 / 60.0 ; 
 
-static const double time_inc = 1 / refresh_rate ; 
+static vec2_t posf_true;
 
-static vec2_t posf;
+static vec2_t posi_true; 
 
-static vec2_t posi; 
+static vec2_t velf_true; 
 
-static vec2_t velf; 
+static vec2_t veli_true; 
 
-static vec2_t veli; 
-
-static vec2_t accel; 
+static vec2_t accel_true; 
 
 
-static double true_y[ARR_LEN] = {0} ; 
-static double approx_y[ARR_LEN] = {0} ;
+static double true_vy[ARR_LEN] = {0} ; 
+static double approx_vy[ARR_LEN] = {0} ;
+
+void test (void) {
  
-for(i = 0; i < ARRLEN; i++) { 
+    for(int i = 0; i < ARR_LEN; i++) { 
 
+        true_vy [i] = veli_true.y ; 
+        stokes(&posi_true, &posf_true, &veli_true, &velf_true, &accel_true, time_inc) ; 
+    }
+}
 
 
 

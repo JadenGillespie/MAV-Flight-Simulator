@@ -1,5 +1,4 @@
 #include "physics.h"
-#include "graphics_shape.h"
 
 
 static void gravity(const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc);
