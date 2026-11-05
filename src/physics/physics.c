@@ -1,4 +1,5 @@
 #include "physics.h"
+#include "graphics_shape.h"
 
 
 static void gravity(const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc);
@@ -45,7 +46,7 @@ static void stokes(const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t 
     static const double mass = 10.0;
 
     static const double k = 3.0*pi*visc*dia/(g*mass); 
-    static const double D = 2.0*pow(k,1.0/2.0)*g; 
+    const double D = 2.0*pow(k,1.0/2.0)*g; 
 
     double v0_mag = pow((pow(v0->x,2) + pow(v0->y,2)),1.0/2.0); 
     double E = (pow(k,-1.0/2.0)-v0_mag)/(pow(k,-1.0/2.0)+v0_mag); 
