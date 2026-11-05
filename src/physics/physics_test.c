@@ -32,7 +32,7 @@ accel.y = 0 ;
 static double true_y[ARR_LEN] = {0} ; 
 static double approx_y[ARR_LEN] = {0} ;
  
-
+for(i = 0; i < ARRLEN; i++) { 
 
 
 
