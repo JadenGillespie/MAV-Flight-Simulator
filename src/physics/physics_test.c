@@ -2,7 +2,7 @@
 
 #define ARR_LEN 100 
 
-static double time_inc = 1.0 / 60.0 ; 
+static const double time_inc = 1.0 / 60.0 ; 
 
 static vec2_t posf_true;
 
