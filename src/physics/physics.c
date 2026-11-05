@@ -37,17 +37,13 @@ static void gravity(const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t
 
 static void stokes(const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc) { 
 
-    //defined temporarily to test functionality, metric SI units
-    // MAKE THESE STATIC CONST VALUES MACROS (#define) //NO, these are temporary 
-    // a bunch of syntax errors in here when trying to compile
     static const double e = 2.71828;
     static const double g = 9.81; 
     static const double pi = 3.14159;
-    static const double visc = 1.48 * pow(10,-4); 
+    static const double visc = 1.48e-4; 
     static const double dia = 2.0; 
     static const double mass = 10.0;
 
-    // dogshit variable names, terrible spacing, unreadable; // again, temporary variables
     static const double k = 3.0*pi*visc*dia/(g*mass); 
     static const double D = 2.0*pow(k,1.0/2.0)*g; 
 
@@ -57,6 +53,6 @@ static void stokes(const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t 
     
     velocity->y = pow(k,1.0/2.0)*(pow(e,(D*time_inc))/E -1)/(1 + pow(e,(D*time_inc))/E); 
     acceleration->y = g * (1 - pow(velocity->y,2) * k); 
-    position->y = p0->y + pow(k,1.0/2.0) * (log(pow(E+(pow(e,(D*t)),2)/pow(E+1,2) * 1/D - t); 
+    position->y = p0->y + pow(k, 1.0/2.0) * (log(pow(E + pow(e, D * time_inc), 2) / pow(E + 1, 2)) * (1.0 / D) - time_inc);
 
 }
