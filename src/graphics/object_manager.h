@@ -4,6 +4,8 @@
 #include <stdint.h>
 #include "graphics_shape.h"
 
+#define FOR_EACH_OBJECT_LINK(manager, iter) for (iter = manager->head; iter != NULL; iter = iter->next)
+
 typedef struct object_link {
     graphics_shape_t *object;
     struct object_link *next;

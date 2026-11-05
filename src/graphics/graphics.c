@@ -2,16 +2,23 @@
 #include <stdint.h>
 
 #include "graphics.h"
-#include "graphics_shape.h"
+#include "object_manager.h"
 
-static graphics_shape_t rendered_objects[MAX_OBJECT_COUNT];
-
-static graphics_shape_t *shapes;
+static object_manager_t *manager;
 
 static void graphical_event_loop();
 
+static void update_render();
+
 void graphics_start_loop()
 {
+    manager = object_manager_init();
+
+    if (!manager)
+    {
+        return;
+    }
+
     glutDisplayFunc(graphical_event_loop);
 
     glutMainLoop();
@@ -25,4 +32,13 @@ static void graphical_event_loop()
 
     glEnd();
     glFlush();
+}
+
+static void update_render()
+{
+    object_link_t *obj_link;
+    FOR_EACH_OBJECT_LINK(manager, obj_link)
+    {
+        obj_link->object->render_shape(obj_link->object);
+    }
 }
