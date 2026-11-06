@@ -7,8 +7,8 @@
 static void write_results (void);
 static void test (void);
 
-static const double time_inc = 1.0 / 60.0 ; 
-static const char *path  = "/MAV-Flight-Simulator/ARCHIVE/Testing_Log.txt"
+static const double time_inc = 1.0 / 60.0; 
+static const char *path  = "/MAV-Flight-Simulator/ARCHIVE/Testing_Log.txt";
 
 static vec2_t posf_true;
 static vec2_t posi_true; 
@@ -28,7 +28,7 @@ static double approx_vy[ARR_LEN] = {0};
 
 void write_results (void) { 
 
-    int open (path, O_TRUNC | O_WRONLY, 0644);
+    int file = open (path, O_TRUNC | O_WRONLY, 0644);
 
 }
 

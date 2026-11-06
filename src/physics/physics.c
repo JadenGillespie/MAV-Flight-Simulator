@@ -1,14 +1,6 @@
 #include "physics.h"
 
 
-//Gravity and Drag are coupled and must be considered simaltenously. Only y dir considered
-static void gravity (const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc); 
-
-static void stokes_true (const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc);
-
-static void stokes_ode (const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc);
-
-
 void update_forces(vec2_t *position, vec2_t *velocity, vec2_t *acceleration, const double time_inc) { 
 
     const vec2_t a0 = *acceleration; 
@@ -26,7 +18,7 @@ void update_forces(vec2_t *position, vec2_t *velocity, vec2_t *acceleration, con
 
 }
 
-static void gravity(const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc) { 
+void gravity(const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc) { 
 
     acceleration -> y = g; 
     velocity -> y = g * time_inc + v0 -> y; 
@@ -36,7 +28,7 @@ static void gravity(const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t
 
 
 
-static void stokes_true(const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc) { 
+void stokes_true(const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc) { 
 
 
     static const double k = 3.0 * pi * dynam_visc * dia / (g * mass); 
@@ -54,7 +46,7 @@ static void stokes_true(const vec2_t *p0, vec2_t *position, const vec2_t *v0, ve
 
 
 
-static void stokes_ode (const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc) {
+void stokes_ode (const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc) {
 
     static const float c = 3 * pi * dynam_visc * dia / mass; 
 
