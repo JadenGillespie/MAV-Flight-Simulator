@@ -1,6 +1,7 @@
 #ifndef PHYSICS_H_
 #define PHYSICS_H_
 
+
 #ifndef _USE_MATH_DEFINES
 #define _USE_MATH_DEFINES 
 #endif
@@ -17,6 +18,8 @@
 
 //useful constants 
 #define g 9.81 
+#define e 2.718281828459045
+#define pi 3.1415926535897932
 
 
 //temporarily defined for testing
