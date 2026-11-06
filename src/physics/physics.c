@@ -1,6 +1,13 @@
 #include "physics.h"
 
 
+//Gravity and Drag are coupled and must be considered simaltenously. Only y dir considered
+static void gravity (const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc); 
+
+static void stokes_true (const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc);
+
+static void stokes_ode (const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc);
+
 
 void update_forces(vec2_t *position, vec2_t *velocity, vec2_t *acceleration, const double time_inc) { 
 
