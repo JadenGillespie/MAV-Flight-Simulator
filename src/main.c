@@ -2,6 +2,7 @@
 
 #include "graphics.h"
 
+
 #define WIDTH_PX 1000
 #define LENGTH_PX 750
 #define WINDOW_NAME "Jaden's Window"
