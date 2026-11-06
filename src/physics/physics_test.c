@@ -23,7 +23,7 @@ void test (void) {
     for(int i = 0; i < ARR_LEN; i++) { 
 
         true_vy [i] = veli_true.y ; 
-        stokes(&posi_true, &posf_true, &veli_true, &velf_true, &accel_true, time_inc) ; 
+        stokes_true (&posi_true, &posf_true, &veli_true, &velf_true, &accel_true, time_inc) ; 
     }
 }
 
