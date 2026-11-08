@@ -2,24 +2,25 @@ import numpy as np
 import os 
 
 DATATYPE = np.float64
-PATHTRUE = "./test_logs/testing_true.dat" #cwd is test 
-PATHODE = "./test_logs/testing_ode.dat"
+PATHTRUE = "testing_true.dat" 
+PATHODE = "testing_ode.dat"
+FILENAME = "test_logs"
 
 
 def main () : 
 
-    data_true = read_doubles(PATHTRUE)
-    data_ode = read_doubles(PATHODE)
-    
+    script_dir = os.path.dirname (os.path.abspath(__file__))
+    file_dir = os.path.join (script_dir, FILENAME)
+
+    true_path = os.path.join (file_dir, PATHTRUE)
+    ode_path = os.path.join (file_dir, PATHODE)
+
+    data_true = np.fromfile (true_path, dtype = DATATYPE, count = -1)
+    data_ode = np.fromfile (ode_path, dtype = DATATYPE, count = -1)
+
+
     return 0
 
 
-def read_doubles (path) : 
-
-    data = np.fromfile (path, dtype = DATATYPE, count = -1)
-    return data 
-
-
-
-#if __name__ == "__main__" : 
-    #main ()
+if __name__ == "__main__" : 
+    main ()
