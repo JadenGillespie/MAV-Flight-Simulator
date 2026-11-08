@@ -11,7 +11,7 @@
 
 int main(int argc, char **argv)
 {
-    if(testing) { 
+    if(TESTING) { 
         test(); 
         return 0; 
     }
