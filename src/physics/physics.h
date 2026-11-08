@@ -1,14 +1,12 @@
 #ifndef PHYSICS_H_
 #define PHYSICS_H_
 
+#include <math.h>
+#include "graphics_shape.h"
 
 #ifndef _USE_MATH_DEFINES
 #define _USE_MATH_DEFINES 
 #endif
-
-
-#include <math.h>
-#include "graphics_shape.h"
 
 
 //temporary macros to test functionality
