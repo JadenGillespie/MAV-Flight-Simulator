@@ -7,7 +7,6 @@ PATHTRUE = "testing_true.dat"
 PATHODE = "testing_ode.dat" 
 FILENAME = "test_logs"
 TIME_INC = 1.0/60.0 #see physics_test.c
-ITERS = 100 #see physics_test.c
 
 
 def main () : 
@@ -22,7 +21,7 @@ def main () :
     data_ode = np.fromfile (ode_path, dtype = DATATYPE, count = -1)
 
 
-    time = np.arange(0, ITERS * TIME_INC, TIME_INC) 
+    time = np.arange(0, len(data_true) * TIME_INC, TIME_INC) 
 
     plt.plot(time, data_true, label = "True")
     plt.plot(time, data_ode, label = "Approximation")  
