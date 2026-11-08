@@ -5,8 +5,8 @@
 #define ARR_LEN 100 
 
 static const double time_inc = 1.0 / 60.0; 
-static const char *path_true  = "/MAV-Flight-Simulator/test/test_logs/testing_true.dat"; 
-static const char *path_ode = "/MAV-Flight-Simulator/test/test_logs/testing_ode.dat";
+static const char *path_true  = "./test/test_logs/testing_true.dat"; //cwd is the MAV-Flight-Simulator repo
+static const char *path_ode = "./test/test_logs/testing_ode.dat";
 
 
 void test (void) {
