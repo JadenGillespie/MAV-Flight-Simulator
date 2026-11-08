@@ -11,7 +11,6 @@
 
 int main(int argc, char **argv)
 {
-
     if(testing) { 
         test(); 
         return 0; 

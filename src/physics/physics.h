@@ -33,8 +33,8 @@ void stokes_true (const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *
 void stokes_ode (const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc);
 //temporarily not delcared as static as to test the fucntions directly in physics_test.c
 
-
 void update_forces (vec2_t *position, vec2_t *velocity, vec2_t *acceleration, const double time_inc);
+void test (void); 
 
 #endif
 
