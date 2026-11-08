@@ -5,7 +5,8 @@
 #define ARR_LEN 100 
 
 static const double time_inc = 1.0 / 60.0; 
-static const char *path  = "/MAV-Flight-Simulator/test/Testing_Log.txt"; 
+static const char *path_true  = "/MAV-Flight-Simulator/test/testing_true.dat"; 
+static const char *path_ode = "/MAV-Flight-Simulator/test/testing_ode.dat";
 
 
 void test (void) {
@@ -34,8 +35,11 @@ void test (void) {
         stokes_ode (&posi_ode, &posf_ode, &veli_ode, &velf_ode, &accel_ode, time_inc);
     }
 
-    int file = open (path, O_TRUNC | O_WRONLY, 0644);
-    ssize_t write_true = write (file, true_vy, sizeof(true_vy)); 
-    ssize_t write_ode = write (file, approx_vy, sizeof(approx_vy));
-    int cls = close (file);
+    int file_true = open (path_true, O_TRUNC | O_WRONLY, 0644);
+    ssize_t write_true = write (file_true, true_vy, sizeof(true_vy)); 
+    int cls_true = close(file_true);
+
+    int file_ode = open (path_ode, O_TRUNC | O_WRONLY, 0644);
+    ssize_t write_ode = write (file_ode, approx_vy, sizeof(approx_vy));
+    int cls_ode = close (file_ode);
 }
