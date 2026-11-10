@@ -42,3 +42,18 @@ static void update_render()
         obj_link->object->render_shape(obj_link->object);
     }
 }
+
+static void graphics_add_circle()
+{
+    graphics_shape_info_t shape_info = {
+        .shape_type = CIRCLE,
+        .num_segments = 10,
+        .radius = 10
+    };
+
+    vec2_t pos, vel, accel;
+
+    graphics_shape_t *shape = graphics_shape_create(shape_info, pos, vel, accel);
+    
+    object_manager_add_object(shape, manager);
+}

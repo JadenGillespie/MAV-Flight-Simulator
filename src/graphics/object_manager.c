@@ -23,7 +23,7 @@ object_manager_t *object_manager_init()
     return manager;
 }
 
-bool object_manager_add_object(graphics_shape_t *shape, vec2_t pos, vec2_t vel, vec2_t accel, object_manager_t *manager)
+bool object_manager_add_object(graphics_shape_t *shape, object_manager_t *manager)
 {
 
     object_link_t *new_link = object_link_create();
