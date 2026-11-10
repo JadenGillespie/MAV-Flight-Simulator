@@ -21,10 +21,14 @@ def main () :
     data_ode = np.fromfile (ode_path, dtype = DATATYPE, count = -1)
 
 
-    time = np.arange(0, len(data_true) * TIME_INC, TIME_INC) 
+    time = np.arange(0, len(data_true)) * TIME_INC
 
     plt.plot(time, data_true, label = "True")
     plt.plot(time, data_ode, label = "Approximation")  
+    plt.xlabel("Time (s)") 
+    plt.ylabel("Velocity Y (m/s)")
+    plt.legend()
+    plt.show()
 
     return 0
 

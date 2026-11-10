@@ -39,7 +39,7 @@ void test (void) {
     ssize_t write_true = write (file_true, true_vy, sizeof(true_vy)); 
     int cls_true = close(file_true);
 
-    int file_ode = open (path_ode, O_TRUNC | O_WRONLY, 0644);
+    int file_ode = open (path_ode, O_TRUNC | O_WRONLY, 0644); //two seperate files for true and ODE approximations for more clear reading and writing
     ssize_t write_ode = write (file_ode, approx_vy, sizeof(approx_vy));
     int cls_ode = close (file_ode);
 }
