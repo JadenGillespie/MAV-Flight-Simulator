@@ -6,7 +6,7 @@ PHYSICS_SRC_DIR = $(SRC_DIR)/physics
 CC = gcc # NEVER CHANGE THIS
 CFLAGS = -Wextra -Wall -pedantic -std=c17
 CPPFLAGS = -I$(SRC_DIR) -I$(GRAPHICS_SRC_DIR) -I$(PHYSICS_SRC_DIR)
-LDFLAGS = $(STATIC_LIB) -lm
+LDFLAGS = -lm
 OPENGL_LDFLAGS = -lglut -lGLU -lGL 
 
 BUILD_DIR = build
@@ -36,19 +36,19 @@ debug: $(CFLAGS) += -O0 -g
 debug: $(TARGET)
 
 $(TARGET): $(MAIN_O) $(STATIC_LIB)  | $(BUILD_DIR)
-	$(CC) $(CPPFLAGS) $(CFLAGS) $^ -o $@  $(OPENGL_LDFLAGS)
+	$(CC) $(CPPFLAGS) $(CFLAGS) $^ -o $@  $(OPENGL_LDFLAGS) $(LDFLAGS)
 
 $(STATIC_LIB): $(LIB_OBJECTS) | $(BUILD_DIR)
 	ar rcs $@ $^
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/graphics/%.c | $(BUILD_DIR)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@ $(LDFLAGS)
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/physics/%.c | $(BUILD_DIR)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@ $(LDFLAGS)
 
 $(MAIN_O): | $(BUILD_DIR)
-	$(CC) $(CFLAGS) $(CPPFLAGS) $(OPENGL_LDFLAGS) -c $(MAIN_C) -o $@
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(OPENGL_LDFLAGS) -c $(MAIN_C) -o $@ $(LDFLAGS)
 
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
