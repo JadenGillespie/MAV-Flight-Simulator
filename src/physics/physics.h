@@ -9,26 +9,21 @@
 #endif
 
 
-//temporary macros to test functionality
-#define GRAVITY 0
-#define STOKES 1
-
-
 //useful constants 
 #define g 9.81 
-#define e 2.718281828459045
-#define pi 3.1415926535897932
+#define e M_E
+#define pi M_PI
 
 
 //temporarily defined for testing
-#define dynam_visc 1.48e-4 
-#define dia 2.0 
+#define density 800
+#define Cd 0.5
 #define mass 10.0 
+#define area_frontal 0.3
 
 //Gravity and Drag are coupled and must be considered simaltenously. Only y dir considered
-void gravity (const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc); 
-void stokes_true (const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc);
-void stokes_ode (const vec2_t *p0, vec2_t *position, const vec2_t *v0, vec2_t *velocity, vec2_t *acceleration, const double time_inc);
+void gravdrag (vec2_t *position, vec2_t *velocity, vec2_t *acceleration, const double time_inc);
+void gravdrag_ode (vec2_t *position, vec2_t *velocity, vec2_t *acceleration, const double time_inc);
 //temporarily not delcared as static as to test the fucntions directly in physics_test.c
 
 void update_forces (vec2_t *position, vec2_t *velocity, vec2_t *acceleration, const double time_inc);

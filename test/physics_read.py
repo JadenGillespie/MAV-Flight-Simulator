@@ -23,12 +23,14 @@ def main () :
 
     time = np.arange(0, len(data_true)) * TIME_INC
 
-    plt.plot(time, data_true, label = "True")
-    plt.plot(time, data_ode, label = "Approximation")  
-    plt.xlabel("Time (s)") 
-    plt.ylabel("Velocity Y (m/s)")
-    plt.legend()
-    plt.show()
+    plt.plot (time, data_true, label = "True")
+    plt.plot (time, data_ode, label = "Approximation")  
+    plt.xlabel ("Time (s)") 
+    plt.ylabel ("Velocity Y (m/s)")
+    plt.legend ()
+    plt.show ()
+
+    #should add something to calulate max error of approxiamtion from true
 
     return 0
 
