@@ -15,11 +15,15 @@ void gravdrag (vec2_t *position, vec2_t *velocity, vec2_t *acceleration, const d
 
 
     static const double k = Cd * density * area_frontal / (2.0 * mass); 
-    double boundary_cond = 1.0 / (2.0 * sqrt(g * k) ) * log( (sqrt(g) + sqrt(k) * velocity -> y) / (sqrt(g) - sqrt(k) * velocity -> y) ) ;
-    double time_function = exp(2.0 * sqrt(g * k) * (time_inc + boundary_cond) ); 
+    double boundary_vel = 1.0 / (2.0 * sqrt (g * k) ) * log ( (sqrt(g) + sqrt(k) * velocity -> y) / (sqrt(g) - sqrt(k) * velocity -> y) ) ;
+    double time_function = exp(2.0 * sqrt(g * k) * (time_inc + boundary_vel) ); 
+    double boundary_pos = position -> y - 1 / k * log (exp (2 * sqrt (g * k) * boundary_vel) + 1); 
 
     velocity -> y = (time_function - 1.0) / (time_function + 1.0) * sqrt(g/k);
     // considering only velocity in downward direction for testing
+
+    position -> y = 1 / k * log (time_function + 1) - time_inc * sqrt (g / k) + boundary_pos;
+    // considering only position in downward direction for testing
 }
 
 
