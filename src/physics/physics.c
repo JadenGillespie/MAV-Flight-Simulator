@@ -13,7 +13,6 @@ void update_forces(vec2_t *position, vec2_t *velocity, vec2_t *acceleration, con
 
 void gravdrag (vec2_t *position, vec2_t *velocity, vec2_t *acceleration, const double time_inc) { 
 
-
     static const double k = Cd * density * area_frontal / (2.0 * mass); 
     double boundary_vel = 1.0 / (2.0 * sqrt (g * k) ) * log ( (sqrt(g) + sqrt(k) * velocity -> y) / (sqrt(g) - sqrt(k) * velocity -> y) ) ;
     double time_function = exp(2.0 * sqrt(g * k) * (time_inc + boundary_vel) ); 
@@ -30,7 +29,7 @@ void gravdrag (vec2_t *position, vec2_t *velocity, vec2_t *acceleration, const d
 
 void gravdrag_ode (vec2_t *position, vec2_t *velocity, vec2_t *acceleration, const double time_inc) {
 
-    static const double k = Cd * density * area_frontal / (2.0 * mass); //temporarily defined twice for testing
+    static const double k = Cd * density * area_frontal / (2.0 * mass); //temporarily defined twice for testing, will want this to be local only to the function
 
     velocity -> y = (-1.0 + sqrt( 1.0 + 4.0 * k * time_inc * (time_inc * g + velocity -> y) ) ) / (2.0 * k * time_inc); 
 }
