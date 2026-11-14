@@ -10,18 +10,28 @@ PATH_POS_ODE = "position_ode.dat"
 FILENAME = "test_logs"
 TIME_INC = 1.0/60.0 #see physics_test.c
 
+READ = 0 #print contents of argument to terminal if TRUE
+
 
 def main () : 
+        
 
     velocity_true = read_test (PATH_VEL_TRUE) 
     velocity_ode = read_test (PATH_VEL_ODE) 
     position_true = read_test (PATH_POS_TRUE) 
-    #position_ode = read_test (PATH_POS_ODE) 
+    position_ode = read_test (PATH_POS_ODE) 
 
+    if READ : 
+        read_file (position_ode) 
+        return 0 
+    
     time = np.arange(0, len(velocity_true)) * TIME_INC
 
     velocity_error = max_err (velocity_true, velocity_ode) 
-    #position_error = max_err (position_true, position_ode)
+    position_error = max_err (position_true, position_ode)
+
+    print(f"\nMax relative velocity error: {velocity_error: .2f}%")
+    print(f"\nMax relative position error: {position_error: .2f}%")
 
     fig, ax = plt.subplots (nrows = 1, ncols = 2, figsize = (10,4)) 
 
@@ -32,14 +42,12 @@ def main () :
     ax[0].legend (loc = 4)
 
     ax[1].plot (time, position_true, label = "True")
-    #ax[1].plot (time, velocity_ode, label = "Approximation")  
+    ax[1].plot (time, position_ode, label = "Approximation")  
     ax[1].set_ylabel ("Position Y (m)")
     ax[1].set_xlabel ("Time (s)") 
     ax[1].legend (loc = 4)
     
     plt.show ()
-
-    #should add something to calulate max error of approxiamtion from true
 
     return 0
 
@@ -66,6 +74,12 @@ def max_err (true_data, ode_data):
                 per_err = err_i 
 
     return per_err
+
+
+def read_file (numpy_data) : 
+    print(f"\nSize of the data set: {numpy_data.shape}\n")
+    for i in numpy_data: 
+        print(f"\n{i: .3f}") 
 
 
 if __name__ == "__main__" : 

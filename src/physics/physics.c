@@ -26,10 +26,17 @@ void gravdrag (vec2_t *position, vec2_t *velocity, vec2_t *acceleration, const d
 }
 
 
-
-void gravdrag_ode (vec2_t *position, vec2_t *velocity, vec2_t *acceleration, const double time_inc) {
+void gravdrag_ode (vec2_t *position, vec2_t *prev_position, vec2_t *velocity, vec2_t *acceleration, const double time_inc) { //to evaluate position will require the previous position state as well as the current
 
     static const double k = Cd * density * area_frontal / (2.0 * mass); //temporarily defined twice for testing, will want this to be local only to the function
 
     velocity -> y = (-1.0 + sqrt( 1.0 + 4.0 * k * time_inc * (time_inc * g + velocity -> y) ) ) / (2.0 * k * time_inc); 
+    // considering only y-dir for testing purposes 
+
+    double prev_position_buffer_y = position -> y; //store current postion to used for next iters previous posotion state
+    position -> y = (-1.0 * (2.0 * position -> y + 1.0 / k) + sqrt( pow(2.0 * position -> y + 1 / k, 2.0) + 4 / k * (g * pow(time_inc, 2.0) + 2 * position -> y - prev_position -> y + k * pow(position -> y, 2.0) ) ) ) / 2.0;
+    prev_position -> y = prev_position_buffer_y; //modify previous position now that is has been used
+    // considering only y-dir for testing purposes
+
+
 }
