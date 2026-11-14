@@ -20,6 +20,9 @@ def main () :
 
     time = np.arange(0, len(velocity_true)) * TIME_INC
 
+    velocity_error = max_err (velocity_true, velocity_ode) 
+    position_error = max_err (position_true, position_ode)
+
     plt.plot (time, velocity_true, label = "True")
     plt.plot (time, velocity_ode, label = "Approximation")  
     plt.xlabel ("Time (s)") 
@@ -32,7 +35,7 @@ def main () :
     return 0
 
 
-def read_test (test_file) :
+def read_test (test_file):
      
     script_dir = os.path.dirname (os.path.abspath(__file__))
     file_dir = os.path.join (script_dir, FILENAME)
@@ -40,7 +43,19 @@ def read_test (test_file) :
     data = np.fromfile (path, dtype = DATATYPE, count = -1)
 
     return data 
+
+def max_err (true_data, ode_data):
     
+    per_err = 0 
+    for i in range (0, len(true_data) ): 
+        err_i = abs (true_data[i] - ode_data[i]) / true_data[i] * 100
+        if err_i > per_err: 
+            per_err = err_i 
+
+    return per_err
+
+
+
 
 
 if __name__ == "__main__" : 
