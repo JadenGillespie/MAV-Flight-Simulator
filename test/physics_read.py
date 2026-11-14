@@ -3,8 +3,8 @@ import os
 import matplotlib.pyplot as plt 
 
 DATATYPE = np.float64
-PATHTRUE = "testing_true.dat" 
-PATHODE = "testing_ode.dat" 
+PATHTRUE = "velocity_true.dat" 
+PATHODE = "velocity_ode.dat" 
 FILENAME = "test_logs"
 TIME_INC = 1.0/60.0 #see physics_test.c
 

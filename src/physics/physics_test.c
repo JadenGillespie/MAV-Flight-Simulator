@@ -5,8 +5,8 @@
 #define ARR_LEN 30
 
 static const double time_inc = 1.0 / 60.0; 
-static const char *path_true  = "./test/test_logs/testing_true.dat"; //cwd is the MAV-Flight-Simulator repo
-static const char *path_ode = "./test/test_logs/testing_ode.dat";
+static const char *path_vel_true  = "./test/test_logs/velocity_true.dat"; //cwd is the MAV-Flight-Simulator repo
+static const char *path_vel_ode = "./test/test_logs/velocity_ode.dat";
 
 
 void test (void) {
@@ -31,11 +31,11 @@ void test (void) {
         gravdrag_ode (&pos_ode, &vel_ode, &accel_ode, time_inc);
     }
 
-    int file_true = open (path_true, O_TRUNC | O_WRONLY, 0644);
+    int file_true = open (path_vel_true, O_TRUNC | O_WRONLY, 0644);
     ssize_t write_true = write (file_true, true_vy, sizeof(true_vy)); 
     int cls_true = close(file_true);
 
-    int file_ode = open (path_ode, O_TRUNC | O_WRONLY, 0644); //two seperate files for true and ODE approximations for more clear reading and writing
+    int file_ode = open (path_vel_ode, O_TRUNC | O_WRONLY, 0644); //two seperate files for true and ODE approximations for more clear reading and writing
     ssize_t write_ode = write (file_ode, approx_vy, sizeof(approx_vy));
     int cls_ode = close (file_ode);
 }
