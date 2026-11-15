@@ -16,10 +16,10 @@
 
 
 //temporarily defined for testing
-#define density 800
-#define Cd 0.5
-#define mass 10.0 
-#define area_frontal 0.3
+#define density 1000
+#define Cd 0.3
+#define mass 40
+#define area_frontal 0.2
 
 //Gravity and Drag are coupled and must be considered simaltenously. Only y dir considered
 void gravdrag (vec2_t *position, vec2_t *velocity, vec2_t *acceleration, const double time_inc);

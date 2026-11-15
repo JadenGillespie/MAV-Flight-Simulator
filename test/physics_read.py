@@ -27,14 +27,15 @@ def main () :
     
     time = np.arange(0, len(velocity_true)) * TIME_INC
 
-    velocity_error = max_err (velocity_true, velocity_ode) 
-    position_error = max_err (position_true, position_ode)
-
+    velocity_error, velocity_error_avg = max_err (velocity_true, velocity_ode) 
     print(f"\nMax relative velocity error: {velocity_error: .2f}%")
+    print(f"\nAverage relative velocity error: {velocity_error_avg: .2f}%")
+    
+    position_error, position_error_avg = max_err (position_true, position_ode)
     print(f"\nMax relative position error: {position_error: .2f}%")
+    print(f"\nAverage relative position error: {position_error_avg: .2f}%") 
 
-    fig, ax = plt.subplots (nrows = 1, ncols = 2, figsize = (10,4)) 
-
+    fig, ax = plt.subplots (nrows = 1, ncols = 2, figsize = (10,5)) 
     ax[0].plot (time, velocity_true, label = "True")
     ax[0].plot (time, velocity_ode, label = "Approximation")  
     ax[0].set_ylabel ("Velocity Y (m/s)")
@@ -64,19 +65,23 @@ def read_test (test_file):
 def max_err (true_data, ode_data):
     
     per_err = 0 
+    per_err_avg = 0 
     
     for i in range (0, len(true_data) ): 
         
         if true_data[i] != 0 :
             err_i = abs (true_data[i] - ode_data[i]) / true_data[i] * 100
+            per_err_avg += err_i
         
             if err_i > per_err: 
                 per_err = err_i 
                 err_index = i 
 
-    print(f"\nError occurs at data point {err_index}")
+    per_err_avg /= len(true_data)
+        
+    print(f"\nMax error occurs at data point {err_index}")
 
-    return per_err
+    return per_err, per_err_avg
 
 
 def read_file (numpy_data) : 

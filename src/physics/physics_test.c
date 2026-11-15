@@ -2,7 +2,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#define ARR_LEN 30
+#define ARR_LEN 55
 
 static const double time_inc = 1.0 / 60.0; 
 static const char *path_vel_true  = "./test/test_logs/velocity_true.dat"; //cwd is the MAV-Flight-Simulator repo
