@@ -22,7 +22,7 @@ def main () :
     position_ode = read_test (PATH_POS_ODE) 
 
     if READ : 
-        read_file (position_ode) 
+        read_file (position_true) 
         return 0 
     
     time = np.arange(0, len(velocity_true)) * TIME_INC
@@ -72,6 +72,9 @@ def max_err (true_data, ode_data):
         
             if err_i > per_err: 
                 per_err = err_i 
+                err_index = i 
+
+    print(f"\nError occurs at data point {err_index}")
 
     return per_err
 

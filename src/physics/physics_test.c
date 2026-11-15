@@ -23,10 +23,12 @@ void test (void) {
     static vec2_t accel_true; 
 
     static vec2_t pos_ode;
+    pos_ode.y = 0;
     static vec2_t vel_ode;  
     static vec2_t accel_ode; 
 
-    static vec2_t prev_pos_ode;
+    static vec2_t prev_pos_ode; 
+    prev_pos_ode.y = 0; 
 
     for(int i = 0; i < ARR_LEN; i++) { 
 
