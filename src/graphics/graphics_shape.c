@@ -63,7 +63,7 @@ static void render_circle(const graphics_shape_t *shape)
 
     for (int i = 0; i < shape->shape_info.num_segments; i++)
     {
-        float angle = 2.0F * M_PI * (float)i / (float)(shape->shape_info.num_segments);
+        float angle = 2.0 * M_PI * (float)i / (float)(shape->shape_info.num_segments - 1);
 
         float vx = shape->position.x + (shape->shape_info.radius * cosf(angle));
         float vy = shape->position.y + (shape->shape_info.radius * sinf(angle));

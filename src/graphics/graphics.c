@@ -8,6 +8,8 @@ static object_manager_t *manager;
 
 static void graphical_event_loop();
 
+static void graphics_add_circle();
+
 static void update_render();
 
 void graphics_start_loop()
@@ -19,6 +21,8 @@ void graphics_start_loop()
         return;
     }
 
+    graphics_add_circle();
+
     glutDisplayFunc(graphical_event_loop);
 
     glutMainLoop();
@@ -28,9 +32,9 @@ void graphics_start_loop()
 static void graphical_event_loop()
 {
     glClear(GL_COLOR_BUFFER_BIT);
-    glBegin(GL_POINTS);
 
-    glEnd();
+    update_render();
+
     glFlush();
 }
 
@@ -47,8 +51,8 @@ static void graphics_add_circle()
 {
     graphics_shape_info_t shape_info = {
         .shape_type = CIRCLE,
-        .num_segments = 10,
-        .radius = 10
+        .num_segments = 100,
+        .radius = 0.25
     };
 
     vec2_t pos, vel, accel;
